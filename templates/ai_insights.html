@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>شات المحلل السيبراني الذكي - Silent Guard Ultra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body { font-family: 'Tajawal', sans-serif; }
+        .bubble-user { background-color: rgb(22 163 74); color: white; border-radius: 1rem; border-bottom-right-radius: 0.25rem; }
+        .bubble-bot { background-color: rgb(15 23 42); color: rgb(226 232 240); border-radius: 1rem; border-bottom-left-radius: 0.25rem; border: 1px solid rgb(30 64 175); }
+        .scrollbar-thin::-webkit-scrollbar { width: 4px; }
+        .scrollbar-thin::-webkit-scrollbar-thumb { background-color: rgba(148, 163, 184, 0.8); border-radius: 999px; }
+        .bubble-bot h1,
+        .bubble-bot h2,
+        .bubble-bot h3 { font-weight: 700; margin-bottom: 0.25rem; }
+        .bubble-bot ul { list-style: disc; padding-right: 1.25rem; margin-top: 0.25rem; margin-bottom: 0.25rem; }
+        .bubble-bot li { margin-bottom: 0.1rem; }
+        .bubble-bot strong { font-weight: 700; }
+        .bubble-bot hr { border: 0; border-top: 1px solid rgba(148,163,184,0.4); margin: 0.5rem 0; }
+        .bubble-bot code { font-family: monospace; background-color: rgba(15,23,42,0.9); padding: 0.05rem 0.25rem; border-radius: 0.25rem; }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen text-slate-100">
+<div class="min-h-screen flex flex-col">
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M12 11c.5304 0 1.0391-.2107 1.4142-.5858C13.7893 10.0391 14 9.5304 14 9s-.2107-1.0391-.5858-1.4142C13.0391 7.2107 12.5304 7 12 7s-1.0391.2107-1.4142.5858C10.2107 7.2107 10 7.7196 10 8.25s.2107 1.0391.5858 1.4142C10.9609 10.7893 11.4696 11 12 11zm0 0v4m9-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <div>
+                    <p class="text-[11px] text-slate-400">مساعد تحليلي مخصص لسجلات Silent Guard Ultra فقط</p>
+                    <h1 class="text-lg font-bold">شات المحلل السيبراني الذكي</h1>
+                </div>
+            </div>
+            <a href="/" class="text-xs text-slate-400 hover:text-emerald-400">العودة للبوابة الرئيسية</a>
+        </div>
+    </header>
+
+    <main class="flex-1 container mx-auto px-4 py-6 max-w-5xl w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 bg-slate-900/80 border border-slate-800 rounded-3xl flex flex-col h-[70vh]">
+                <div class="px-4 pt-4 pb-2 border-b border-slate-800">
+                    <p class="text-xs text-slate-400">اسأل عن الهجمات، المصائد، والأنماط المسجلة في النظام.</p>
+                    <p class="text-[11px] text-slate-500">المساعد يعتمد على ملف السجل الداخلي فقط، ولا يستخدم أي مصادر خارجية.</p>
+                </div>
+                <div id="chatWindow" class="flex-1 overflow-y-auto px-4 py-4 space-y-3 scrollbar-thin">
+                </div>
+                <form id="chatForm" class="border-t border-slate-800 px-4 py-3 flex items-center space-x-2 space-x-reverse">
+                    <input id="userInput" type="text" placeholder="اكتب سؤالك عن الهجمات أو السجلات..."
+                           class="flex-1 bg-slate-900 text-slate-100 text-sm rounded-2xl px-3 py-2 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+                    <button type="submit"
+                            class="bg-emerald-500 hover:bg-emerald-600 text-white text-sm px-4 py-2 rounded-2xl">
+                        إرسال
+                    </button>
+                </form>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-4 text-xs text-slate-300">
+                    <h3 class="text-sm font-bold text-slate-50 mb-2">أمثلة لأسئلة مفيدة</h3>
+                    <ul class="space-y-1 list-disc pr-4">
+                        <li>ما هي أخطر المحاولات التي ظهرت في السجلات مؤخراً؟</li>
+                        <li>هل هناك IP واحد يظهر كثيراً كمهاجم؟</li>
+                        <li>ما أكثر المصائد التي تم تفعيلها في الفترة الأخيرة؟</li>
+                        <li>هل تلاحظ نمطاً معيناً في محاولة الوصول للروابط الحساسة؟</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-4 text-xs text-slate-300">
+                    <h3 class="text-sm font-bold text-slate-50 mb-2">تنبيه</h3>
+                    <p>إذا لم تكن هناك سجلات كافية أو لم تتضمن ما تسأل عنه، سيخبرك المساعد أنه لا يملك معلومات كافية للإجابة من السجلات.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    const chatWindow = document.getElementById('chatWindow');
+    const chatForm = document.getElementById('chatForm');
+    const userInput = document.getElementById('userInput');
+
+    function addMessage(text, sender, isMarkdown = false) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex ' + (sender === 'user' ? 'justify-end' : 'justify-start');
+
+        const bubble = document.createElement('div');
+        bubble.className = 'max-w-[80%] px-3 py-2 text-xs leading-relaxed ' +
+                           (sender === 'user' ? 'bubble-user' : 'bubble-bot');
+
+        if (isMarkdown) {
+            bubble.innerHTML = marked.parse(text);
+        } else {
+            bubble.textContent = text;
+        }
+
+        wrapper.appendChild(bubble);
+        chatWindow.appendChild(wrapper);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+        return bubble;
+    }
+
+    async function sendMessage(message) {
+        addMessage(message, 'user', false);
+        userInput.value = '';
+
+        const loadingBubble = addMessage('... جاري تحليل السجلات والإجابة', 'bot', false);
+
+        try {
+            const res = await fetch('/ai/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message })
+            });
+            const data = await res.json();
+            const reply = data.reply || 'لم يتم استلام رد من الخادم.';
+            loadingBubble.innerHTML = marked.parse(reply);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        } catch (e) {
+            loadingBubble.textContent = 'تعذر الاتصال بالمساعد الذكي. تأكد من عمل الخادم ومفتاح Gemini.';
+        }
+    }
+
+    chatForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const message = userInput.value.trim();
+        if (!message) return;
+        sendMessage(message);
+    });
+
+    window.addEventListener('load', function() {
+        const welcome = 'مرحباً، أنا مساعد التحليل السيبراني لنظام **Silent Guard Ultra**.\n\n' +
+                        '- يمكنك سؤالي عن السجلات، المصائد، ومحاولات الهجوم.\n' +
+                        '- أعتمد فقط على ما هو موجود في سجلات النظام.';
+        addMessage(welcome, 'bot', true);
+    });
+</script>
+</body>
+</html>

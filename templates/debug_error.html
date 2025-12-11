@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Error Log</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap');
+        body { font-family: 'Source Code Pro', monospace; }
+    </style>
+</head>
+<body class="bg-gray-900 text-green-400 min-h-screen flex items-center justify-center px-4">
+<div class="bg-gray-950 border border-green-600 rounded-xl max-w-3xl w-full p-6 shadow-lg">
+    <h1 class="text-lg text-green-300 mb-4">Application Debug Log (read-only)</h1>
+    <pre class="text-xs text-green-200 overflow-x-auto whitespace-pre-wrap leading-relaxed">
+[WARN] 2024-11-27 21:03:11 Database connection retry (attempt=2)
+[ERROR] 2024-11-27 21:03:12 Query failed: SELECT * FROM users WHERE id='${USER_ID}'
+[TRACE] 2024-11-27 21:03:12 Stack:
+        at db.query (core/db.py:112)
+        at user.load (core/user.py:54)
+        at handle_request (app/main.py:88)
+
+[INFO] 2024-11-27 21:03:13 Fallback strategy activated: using cached snapshot
+[DEBUG] 2024-11-27 21:03:13 Snapshot location: /var/backups/app/snapshots/users.snapshot
+    </pre>
+    <p class="mt-4 text-xs text-gray-500">
+        Debug interface is restricted. Any manual access to this endpoint is monitored.
+    </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - Access Restricted</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen text-gray-200">
+<div class="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-md border border-gray-700 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-2 bg-red-600"></div>
+
+    <div class="flex justify-center mb-6">
+        <div class="bg-red-900/30 p-4 rounded-full">
+            <svg class="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+        </div>
+    </div>
+
+    <h2 class="text-2xl font-bold text-center text-white mb-2">Restricted Area</h2>
+    <p class="text-center text-gray-400 mb-8 text-sm">
+        Unauthorized access is strictly monitored. Your actions are being recorded.
+    </p>
+
+    <form id="trapForm" class="space-y-5">
+        <div>
+            <label class="block text-gray-400 text-xs font-bold uppercase mb-2">Admin ID</label>
+            <input type="text" id="sys_id"
+                   class="w-full bg-gray-700 text-white px-4 py-3 rounded border border-gray-600 focus:border-red-500 focus:outline-none"
+                   placeholder="admin@root">
+        </div>
+
+        <div>
+            <label class="block text-gray-400 text-xs font-bold uppercase mb-2">Passcode</label>
+            <input type="password" id="access_key"
+                   class="w-full bg-gray-700 text-white px-4 py-3 rounded border border-gray-600 focus:border-red-500 focus:outline-none"
+                   placeholder="••••••••">
+        </div>
+
+        <button type="submit"
+                class="w-full bg-red-600 text-white font-bold py-3 rounded hover:bg-red-700 transition duration-300">
+            AUTHENTICATE
+        </button>
+    </form>
+
+    <div class="mt-6 text-center">
+        <a href="/" class="text-xs text-gray-500 hover:text-white">← Return to Public Site</a>
+    </div>
+</div>
+
+<script>
+    document.getElementById('trapForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const sysId = document.getElementById('sys_id').value;
+        const accessKey = document.getElementById('access_key').value;
+
+        try {
+            await fetch('/admin/portal', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sys_id: sysId, key: accessKey })
+            });
+            alert('⛔ ACCESS DENIED: Security Event Triggered.');
+        } catch (error) {
+            console.error('Error');
+        }
+    });
+</script>
+</body>
+</html>
