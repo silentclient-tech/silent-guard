@@ -9,7 +9,7 @@ import os
 app = Flask(__name__)
 app.secret_key = "silent-guard-ultra-key"
 
-GEMINI_API_KEY = "AIzaSyDZLrZHyau46i78Lidj4Uui51JZqbycEDY"
+GEMINI_API_KEY = "#####"
 
 genai.configure(api_key=GEMINI_API_KEY)
 gemini_model = genai.GenerativeModel("gemini-2.5-flash")
